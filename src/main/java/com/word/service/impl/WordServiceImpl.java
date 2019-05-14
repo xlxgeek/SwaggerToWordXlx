@@ -42,7 +42,8 @@ public class WordServiceImpl implements WordService {
 
         try {
             // convert JSON string to Map
-            map = mapper.readValue(json, new TypeReference<HashMap<String,Object>>(){});
+            map = mapper.readValue(json, new TypeReference<HashMap<String, Object>>() {
+            });
         } catch (Exception e) {
             LoggerFactory.getLogger(WordService.class).error("parse error", e);
         }
@@ -100,6 +101,10 @@ public class WordServiceImpl implements WordService {
                 tag = String.valueOf(content.get("summary"));
                 //请求体
                 List parameters = (ArrayList) content.get("parameters");
+
+                /**
+                 * 获取请求参数
+                 */
                 if (parameters != null && parameters.size() > 0) {
                     for (int i = 0; i < parameters.size(); i++) {
                         Request request = new Request();
